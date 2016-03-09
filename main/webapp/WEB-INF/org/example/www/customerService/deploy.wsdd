@@ -1,0 +1,66 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from customerService WSDL service -->
+
+  <service name="customerServiceSOAP" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://www.example.org/customerService/"/>
+      <parameter name="wsdlServiceElement" value="customerService"/>
+      <parameter name="schemaUnqualified" value="http://www.example.org/customerService/"/>
+      <parameter name="wsdlServicePort" value="customerServiceSOAP"/>
+      <parameter name="className" value="org.example.www.customerService.CustomerServiceSOAPSkeleton"/>
+      <parameter name="wsdlPortType" value="customerService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://www.example.org/customerService/"
+        qname="ns:>CustomerRequest"
+        type="java:org.example.www.customerService.CustomerRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/customerService/"
+        qname="ns:>>CustomerResponse>OperationResponse"
+        type="java:org.example.www.customerService.CustomerResponseOperationResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/customerService/"
+        qname="ns:>>CustomerRequest>gender"
+        type="java:org.example.www.customerService.CustomerRequestGender"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/customerService/"
+        qname="ns:>>CustomerRequest>address"
+        type="java:org.example.www.customerService.CustomerRequestAddress"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/customerService/"
+        qname="ns:>CustomerResponse"
+        type="java:org.example.www.customerService.CustomerResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

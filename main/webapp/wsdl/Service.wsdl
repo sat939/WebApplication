@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/customer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="customer-Service" targetNamespace="http://www.example.org/customer">
+
+
+ <message name="customerRequest">
+      <part name="customer" type="xsd:string"/>
+   </message>
+	
+   <message name="customerResponse">
+      <part name="Response" type="xsd:string"/>
+   </message>
+
+<portType name="Customer_PortType">
+      <operation name="delete">
+         <input message="tns:customerRequest"/>
+         <output message="tns:customerResponse"/>
+      </operation>
+	  <operation name="create">
+         <input message="tns:customerRequest"/>
+         <output message="tns:customerResponse"/>
+      </operation>
+	  <operation name="update">
+         <input message="tns:customerRequest"/>
+         <output message="tns:customerResponse"/>
+      </operation>
+   </portType>
+   
+   <binding name="Customer_Binding" type="tns:Customer_PortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="create">
+         <soap:operation soapAction=""/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+		
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+	  <operation name="delete">
+         <soap:operation soapAction=""/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+		
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+	  <operation name="update">
+         <soap:operation soapAction=""/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+		
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+   </binding>
+   
+   <service name="CustomerService">
+      <documentation>WSDL File for CustomerService</documentation>
+      <port binding="tns:Customer_Binding" name="Service">
+         <soap:address location="http://localhost:8005/WebApplication/services/Service"/>
+      </port>
+   </service>
+   </definitions>
